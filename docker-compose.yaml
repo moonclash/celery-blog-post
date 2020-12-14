@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+
+  rabbit_mq:
+    container_name: rabbit_boi
+    image:
+      rabbitmq:latest
+    ports:
+      - '5672:5672'
+
+  celery_tut:
+    container_name: celery_boi
+
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    depends_on:
+      - rabbit_mq
+
+    volumes:
+      - .:/app/celery-tut
+
+    command: celery -A tasks worker --loglevel=INFO
