@@ -22,4 +22,4 @@ services:
     volumes:
       - .:/app/celery-tut
 
-    command: celery -A tasks worker --loglevel=INFO
+    command: celery -A app.tasks worker --loglevel=INFO
