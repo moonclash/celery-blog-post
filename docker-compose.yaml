@@ -21,5 +21,8 @@ services:
 
     volumes:
       - .:/app/celery-tut
+    
+    env_file:
+      - secrets.env
 
     command: celery -A app.tasks worker --loglevel=INFO

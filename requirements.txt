@@ -1,2 +1,2 @@
 celery==5.0.4
-python-twitter==3.5
+tweepy==3.9.0
