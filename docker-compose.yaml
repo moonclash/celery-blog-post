@@ -40,3 +40,4 @@ services:
 
     # command: [celery, --app=worker.app, worker, --pool=gevent, --concurrency=20, --loglevel=INFO]
     command: celery -A app.tasks worker
+
