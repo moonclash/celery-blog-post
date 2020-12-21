@@ -9,6 +9,19 @@ services:
     ports:
       - '5672:5672'
 
+  
+  beat:
+    container_name: beat_boi
+    build: .
+    command: celery -A app.worker beat
+    env_file:
+      - secrets.env
+    depends_on: 
+      - rabbit_mq
+    volumes:
+      - .:/celery-app/celery-tut
+
+
   celery_tut:
     container_name: celery_boi
 
@@ -20,9 +33,10 @@ services:
       - rabbit_mq
 
     volumes:
-      - .:/app/celery-tut
+      - .:/celery-app/celery-tut
     
     env_file:
       - secrets.env
 
-    command: celery -A app.tasks worker --loglevel=INFO
+    # command: [celery, --app=worker.app, worker, --pool=gevent, --concurrency=20, --loglevel=INFO]
+    command: celery -A app.tasks worker

@@ -1,6 +1,6 @@
 FROM python:3.8
 
-WORKDIR /app/celery-tut
+WORKDIR /celery-app/celery-tut
 
 COPY . .
 
